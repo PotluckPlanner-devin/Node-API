@@ -31,7 +31,7 @@ router.post('/login', (req, res) => {
       if (user && bcrypt.compareSync(password, user.password)){
         const token = generateToken(user)
 
-        res.status(200).json({message: `Succesfully logged in`, token})
+        res.status(200).json({message: `Succesfully logged in`, token, id: user.id})
       } else {
         res.status(400).json({message: 'Wrong username or password'})
       }
@@ -45,7 +45,8 @@ function generateToken(user) {
   const payload = {
     subject: user.id,
     username: user.username,
-    role: user.role || "user"
+    role: user.role || "user",
+
   }
 
   const secret = "potluck planner is the best"
