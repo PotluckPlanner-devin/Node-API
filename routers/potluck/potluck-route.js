@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', potluckIdChecker, (req, res) => {
   const { id } = req.params
 
   Potluck.findPotluckById(id)
@@ -21,15 +21,20 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
   const potluck = req.body
+  const { user_id, location, date, time } = req.body
 
+  if(user_id && location && date && time){
   Potluck.addPotluck(potluck)
     .then(potluck => {
       res.status(201).json({message: "Successfully created potluck"})
     })
     .catch(err => res.status(500).json({message: `Server Error: ${err}`}))
+  } else {
+    res.status(400).json({message: "Please make sure there is a user_id, location, date, and time provided"})
+  }
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', potluckIdChecker, (req, res) => {
   const potluck = req.body
   const { id } = req.params
 
@@ -40,7 +45,7 @@ router.put('/:id', (req, res) => {
     .catch(err => res.status(500).json({message: `Server Error: ${err}`}))
 })
 
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id', potluckIdChecker, (req, res) => {
     const { id } = req.params
 
     Potluck.removePotluck(id)
@@ -50,6 +55,18 @@ router.put('/:id', (req, res) => {
     .catch(err => res.status(500).json({message: `Server Error: ${err}`}))
 })
 
-
-
 module.exports = router
+
+  function potluckIdChecker(req, res, next){
+    const { id } = req.params
+  
+    Potluck.findPotluckById(id)
+      .then(potluck => {
+        if(potluck){
+          next();
+        } else {
+          res.status(400).json({message: "Error finding that potluck ID"})
+        }
+      })
+      .catch(err => res.status(500).json({message: `Server Error: ${err}`}))
+  }
