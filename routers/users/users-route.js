@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     .catch(err => res.status(500).json({message: `Server Error: ${err}`}))
 })
 
-router.get('/:id', (req, res) => {
+router.get('/:id', checkUsersId, (req, res) => {
   const { id } = req.params
 
   Users.findById(id)
@@ -20,11 +20,9 @@ router.get('/:id', (req, res) => {
     .catch(err => res.status(500).json({message: `Server Error: ${err}`}))
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', checkUsersId, (req, res) => {
   const { id } = req.params
   const user = req.body
-
-  console.log(req.body)
 
   Users.editUser(user, id)
     .then(user => {
@@ -33,7 +31,7 @@ router.put('/:id', (req, res) => {
     .catch(err => res.status(500).json({message: `Server Error: ${err}`}))
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', checkUsersId, (req, res) => {
   const { id } = req.params
 
   Users.removeUser(id)
@@ -44,3 +42,17 @@ router.delete('/:id', (req, res) => {
 })
 
 module.exports = router
+
+function checkUsersId(req, res, next){
+  const { id } = req.params
+
+  Users.findById(id)
+  .then(user => {
+    if(user){
+      next();
+    } else {
+      res.status(400).json({message: "Error finding that user ID"})
+    }
+  })
+  .catch(err => res.status(500).json({message: `Server Error: ${err}`}))
+}
