@@ -18,7 +18,7 @@ URL: https://potluckplanner-buildweek.herokuapp.com/
 
 ***  
 
-## The following endpoints are available for **AUTHENTICATION ROUTER**
+### The following endpoints are available for **AUTHENTICATION ROUTER**
 
 * POST /api/authentication/register
 > username, email, and password are required.
@@ -45,7 +45,7 @@ URL: https://potluckplanner-buildweek.herokuapp.com/
 > Token is required
 > User object is required
 > User ID is required 
-> In that order
+> (In that order )
 > Returns nothing
 
 * DELTE /api/users/:id
@@ -75,7 +75,7 @@ URL: https://potluckplanner-buildweek.herokuapp.com/
 > Token is required
 > Potluck object is required
 > Potluck ID is required
-> In that order
+> (In that order)
 > Returns nothing
 
 * DELETE /api/potluck/:id
