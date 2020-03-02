@@ -2,7 +2,7 @@
 
 ***
 
-URL:
+URL: https://potluckplanner-buildweek.herokuapp.com/
 
 ***
 
