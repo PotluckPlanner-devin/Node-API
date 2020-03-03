@@ -2,9 +2,9 @@ const router = require('express').Router()
 
 const Foods = require('./food-model')
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params
-  Foods.findFoodsById(id)
+router.get('/:potluckID', (req, res) => {
+  const { potluckID } = req.params
+  Foods.findFoodsById(potluckID)
     .then(foods => {
       res.status(200).json(foods)
     })
@@ -75,7 +75,7 @@ router.post('/:potluckID/isTaken', (req, res) => {
   }
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:foodID', (req, res) => {
   const { id } = req.params
 
   if(req.body.foodName && req.body.foodName.length > 0){
