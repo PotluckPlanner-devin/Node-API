@@ -2,7 +2,7 @@ const router = require('express').Router()
 
 const Foods = require('./food-model')
 
-router.get('/:id', (req, res) => {
+router.get('/:potluckID', (req, res) => {
   const { id } = req.params
   Foods.findFoodsById(id)
     .then(foods => {
@@ -75,7 +75,7 @@ router.post('/:potluckID/isTaken', (req, res) => {
   }
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:foodID', (req, res) => {
   const { id } = req.params
 
   if(req.body.foodName && req.body.foodName.length > 0){
@@ -89,7 +89,7 @@ router.put('/:id', (req, res) => {
   }
   })
 
-  router.delete('/:potluckID', (req, res) => {
+  router.delete('/:foodID', (req, res) => {
     const { potluckID } = req.params
     
     const foodName = req.body.foodName
