@@ -3,8 +3,8 @@ const router = require('express').Router()
 const Foods = require('./food-model')
 
 router.get('/:potluckID', (req, res) => {
-  const { id } = req.params
-  Foods.findFoodsById(id)
+  const { potluckID } = req.params
+  Foods.findFoodsById(potluckID)
     .then(foods => {
       res.status(200).json(foods)
     })
@@ -89,7 +89,7 @@ router.put('/:foodID', (req, res) => {
   }
   })
 
-  router.delete('/:foodID', (req, res) => {
+  router.delete('/:potluckID', (req, res) => {
     const { potluckID } = req.params
     
     const foodName = req.body.foodName
