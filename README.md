@@ -82,3 +82,33 @@ URL: https://potluckplanner-buildweek.herokuapp.com/
 > Token is required
 > User ID is required
 > Returns nothing
+
+### The following endpoints are available for **FOOD ROUTER**
+
+* GET /api/food/:potluckID
+> Token is required
+> Potluck ID is required
+> Returns a list of food requested at given potluckID
+
+* POST /api/food/:potluckID
+> Token is required
+> Potluck ID is reqruied in URL
+> FoodName is required
+> Returns nothing
+
+* POST /api/food/:potluckID/isTaken
+> Token is required
+> Potluck ID is required
+> Foodname is required
+> Returns nothing
+
+* PUT /api/food/:foodID (**DON'T USE FOR NOW**)
+> Token is required
+> Food ID is required
+> Returns nothing
+
+* DELETE /api/food/:potluckID
+> Token is required
+> Potluck ID is required
+> foodName is required
+> Returns nothing
