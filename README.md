@@ -68,7 +68,7 @@ URL: https://potluckplanner-buildweek.herokuapp.com/
 
 * POST /api/potluck/
 > Token is required
-> user_id, location, date, and time are required
+> user_id, location, potluckName, date, and time are required
 > Returns nothing
 
 * PUT /api/potluck/:id
