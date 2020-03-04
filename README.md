@@ -4,19 +4,7 @@
 
 URL: https://potluckplanner-buildweek.herokuapp.com/
 
-***
-
-###### Current Users
-
-  "username": "Billy", 
-  "email": "potluckplanner@email.com", 
-  "password": "lambdaisnice"
-
-  "username": "Testing", 
-  "email": "testing@email.com", 
-  "password": "asdf1234"
-
-***  
+*** 
 
 ### The following endpoints are available for **AUTHENTICATION ROUTER**
 
