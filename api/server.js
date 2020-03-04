@@ -19,8 +19,8 @@ server.use(express.json());
 server.use('/api/authentication', authRouter)
 server.use('/api/users', restricted, userRouter)
 server.use('/api/potluck', restricted, potluckRouter)
-server.use('/api/food', foodRouter)
-server.use('/api/user-potluck', userPotluckRouter)
+server.use('/api/food', restricted, foodRouter)
+server.use('/api/user-potluck', restricted, userPotluckRouter)
 
 server.get('/', (req, res) => {
     res.status(200).json({message: "Server is up and running"})
