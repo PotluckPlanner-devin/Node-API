@@ -99,7 +99,7 @@ URL: https://potluckplanner-buildweek.herokuapp.com/
 * POST /api/food/:potluckID/isTaken
 > Token is required
 > Potluck ID is required
-> foodname is required
+> foodName is required
 > Returns nothing
 
 * PUT /api/food/:foodID (**DON'T USE FOR NOW**)
@@ -115,5 +115,19 @@ URL: https://potluckplanner-buildweek.herokuapp.com/
 
 ### The following endpoints are available for **USER-POTLUCK ROUTER**
 
-* GET /api/user-potluck/
+* GET /api/user-potluck/:potluckID
 > Token is required
+> Potluck ID is required
+> Returns list of users who are going to given potluck ID
+
+* POST /api/user-potluck/:potluckID
+> Token is required
+> Potluck ID is required
+> username is required
+> Returns nothing
+
+* DELETE /api/user-potluck/:potluckID
+> Token is required
+> Potluck ID is required
+> username is required
+> Returns nothing
