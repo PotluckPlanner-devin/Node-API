@@ -114,3 +114,6 @@ URL: https://potluckplanner-buildweek.herokuapp.com/
 > Returns nothing
 
 ### The following endpoints are available for **USER-POTLUCK ROUTER**
+
+* GET /api/user-potluck/
+> Token is required
