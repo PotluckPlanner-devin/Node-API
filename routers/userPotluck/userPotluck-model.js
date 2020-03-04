@@ -1,19 +1,28 @@
 const db = require('../../database/dbConfig')
 
 module.exports = {
-  findUsersByPotluckId,
+  findAttendeesByPotluckID,
+  findPotlucksByUserID,
   findUserByName,
   addUserToPotluck,
   removeUserFromPotluck
 }
 
-function findUsersByPotluckId(id) {
+function findAttendeesByPotluckID(id) {
   return db('potluck_users')
     .join('potlucks', 'potlucks.id', 'potluck_users.potluck_id')
     .join('users', 'users.id', 'potluck_users.user_id')
     .select('potlucks.id', 'users.id', 'users.username')
     .where('potluck_users.potluck_id', id);
   }
+
+function findPotlucksByUserID(id) {
+  return db('potluck_users')
+  .join('potlucks', 'potlucks.id', 'potluck_users.potluck_id')
+  .join('users', 'users.id', 'potluck_users.user_id')
+  .select('potlucks.potluckName', 'potlucks.location', 'potlucks.date', 'potlucks.time')
+  .where('potluck_users.user_id', id);
+}
 
 function findUserByName(username) {
   return db('users')

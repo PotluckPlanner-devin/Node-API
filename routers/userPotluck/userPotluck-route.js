@@ -2,11 +2,20 @@ const router = require('express').Router()
 
 const UsersPotluck = require('./userPotluck-model')
 
-router.get('/:potluckID', (req, res) => {
+router.get('/:potluckID/attending', (req, res) => {
   const { potluckID } = req.params
-  UsersPotluck.findUsersByPotluckId(potluckID)
+  UsersPotluck.findAttendeesByPotluckID(potluckID)
     .then(users => {
       res.status(200).json(users)
+    })
+    .catch(err => res.status(500).json({message: `Server Error: ${err}`}))
+})
+
+router.get('/:userID/user', (req, res) => {
+  const { userID } = req.params
+  UsersPotluck.findPotlucksByUserID(userID)
+    .then(potlucks => {
+      res.status(200).json(potlucks)
     })
     .catch(err => res.status(500).json({message: `Server Error: ${err}`}))
 })
